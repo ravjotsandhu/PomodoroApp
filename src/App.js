@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { FaMinus, FaPlus } from "react-icons/fa";
+import { useState } from "react";
+import "./index.css";
+
 
 function App() {
+  const [state, setState] = useState([
+    { title: "Break length", count: 5, id: 1 },
+    { title: "Session length", count: 30, id: 2 }
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="flex actions-wrapper">
+        {state.map(({ title, count, id }) => (
+          <SetTimer
+            title={title}
+            count={count}
+            handleDecrease={handleDecrease}
+            handleIncrease={handleIncrease}
+            id={id}
+          />
+        ))}
+      </div>
+      <div>Clock</div>
     </div>
   );
 }
