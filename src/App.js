@@ -26,5 +26,20 @@ function App() {
     </div>
   );
 }
+const SetTimer = ({ title, count, id, handleDecrease, handleIncrease }) => (
+  <div className="timer-container">
+    <h1>{title}</h1>
+    <div className="flex "></div>
+    <div>
+      <button onClick={() => handleDecrease(id)}>
+        <FaMinus />
+      </button>
+      <span>{count}</span>
+      <button onClick={() => handleIncrease(id)}>
+        <FaPlus />
+      </button>
+    </div>
+  </div>
+);
 
 export default App;
