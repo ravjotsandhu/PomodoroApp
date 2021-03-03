@@ -9,6 +9,15 @@ function App() {
     { title: "Session length", count: 30, id: 2 }
   ]);
 
+  const handleDecrease = (id) =>
+    setState((prev) =>
+      prev.map((el) => (el.id === id ? { ...el, count: el.count - 1 } : el))
+    );
+  const handleIncrease = (id) =>
+    setState((prev) =>
+      prev.map((el) => (el.id === id ? { ...el, count: el.count + 1 } : el))
+    );
+
   return (
     <div>
       <div className="flex actions-wrapper">
