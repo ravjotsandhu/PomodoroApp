@@ -12,6 +12,7 @@ body {
   justify-content: center;
   font-family: "Lobster", cursive;
   min-height: 100vh;
+  text-align: center;
 }
 .flex {
   display: flex;
@@ -23,18 +24,33 @@ body {
   margin: 20px;
 }
 
-.actions-wrapper {
-  
+.clock-container {
+  text-align: center;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  padding: 10px 60px;
+  display: inline-block;
+  margin-top: 40px;
 }
 
-.actions-wrapper button {
+button {
   background-color: transparent;
-  padding: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
   margin: 10px;
   color: #fff;
   font-size: 20px;
 }
 
 .actions-wrapper span {
-  margin: 40px;
+  margin: 0 10px;
+  font-size: 20px
+}
+
+.clock-container h1{
+  margin: 0;
+}
+
+.clock-container span{
+  font-size: 60px;
 }
