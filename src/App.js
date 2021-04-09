@@ -1,14 +1,15 @@
-import { FaMinus, FaPlus } from "react-icons/fa";
-import { useState } from "react";
+import { FaMinus, FaPlus, FaPlay, FaPause, FaSyncAlt } from "react-icons/fa";
+import { useState, useContext, useEffect } from "react";
 import "./index.css";
-
+import setTimerContext from "./context.js";
 
 function App() {
+  const { time, setIsPlaying } = useContext(setTimerContext);
   const [state, setState] = useState([
     { title: "Break length", count: 5, id: 1 },
     { title: "Session length", count: 30, id: 2 }
   ]);
-
+  
   const handleDecrease = (id) =>
     setState((prev) =>
       prev.map((el) => (el.id === id ? { ...el, count: el.count - 1 } : el))
@@ -17,7 +18,13 @@ function App() {
     setState((prev) =>
       prev.map((el) => (el.id === id ? { ...el, count: el.count + 1 } : el))
     );
-
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
+  const handlePause = () => {
+    setIsPlaying(false);
+  };
+  
   return (
     <div>
       <div className="flex actions-wrapper">
@@ -31,10 +38,30 @@ function App() {
           />
         ))}
       </div>
-      <div>Clock</div>
+      <div className="clock-container">
+    
+        <span>{convertToTime(time)}</span>
+        <div className="flex">
+          <button onClick={() => handlePlay()}>
+            <FaPlay />
+          </button>
+          <button onClick={() => handlePause()}>
+            <FaPause />
+          </button>
+          <button onClick={() => handleReset()}>
+            <FaSyncAlt />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
+const convertToTime = (count) => {
+  const minutes = Math.floor(count / 60);
+  let seconds = count % 60;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  return `${minutes}:${seconds}`;
+};
 const SetTimer = ({ title, count, id, handleDecrease, handleIncrease }) => (
   <div className="timer-container">
     <h1>{title}</h1>
