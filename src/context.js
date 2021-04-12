@@ -6,13 +6,12 @@ const SetTimerContext = createContext();
 export function ContextProvider({ children }) {
   const [time, setTime] = useState(25 * 60);
   const [isPlaying, setIsPlaying] = useState(false);
-
+  const [currentTimer, setcurrentTimer] = useState("Session");
   useEffect(() => {
     if (isPlaying) {
       const timer = setInterval(() => {
         setTime((currentTime) => currentTime - 1);
       }, 1000);
-
       return () => clearInterval(timer);
     }
   }, [isPlaying]);
@@ -21,7 +20,11 @@ export function ContextProvider({ children }) {
     <SetTimerContext.Provider
       value={{
         time,
-        setIsPlaying
+        setTime,
+        setIsPlaying,
+        isPlaying,
+        setcurrentTimer,
+        currentTimer
       }}
     >
       {children}

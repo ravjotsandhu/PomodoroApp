@@ -4,12 +4,18 @@ import "./index.css";
 import setTimerContext from "./context.js";
 
 function App() {
-  const { time, setIsPlaying } = useContext(setTimerContext);
+  const {
+    time,
+    setIsPlaying,
+    setTime,
+    currentTimer,
+    isPlaying,
+    setcurrentTimer
+  } = useContext(setTimerContext);
   const [state, setState] = useState([
     { title: "Break length", count: 5, id: 1 },
     { title: "Session length", count: 30, id: 2 }
   ]);
-  
   const handleDecrease = (id) =>
     setState((prev) =>
       prev.map((el) => (el.id === id ? { ...el, count: el.count - 1 } : el))
@@ -24,7 +30,20 @@ function App() {
   const handlePause = () => {
     setIsPlaying(false);
   };
-  
+  const handleReset = () => {
+    setTime(25 * 60);
+  };
+  useEffect(() => {
+    if (isPlaying) {
+      if (convertToTime(time) === "0:00") {
+        setTimeout(() => {
+          setcurrentTimer((Timer) =>
+            Timer === "Session" ? "Break" : "Session"
+          );
+        }, 1000);
+      }
+    }
+  }, [isPlaying, time, setcurrentTimer]);
   return (
     <div>
       <div className="flex actions-wrapper">
@@ -39,7 +58,7 @@ function App() {
         ))}
       </div>
       <div className="clock-container">
-    
+        <h1>{currentTimer}</h1>
         <span>{convertToTime(time)}</span>
         <div className="flex">
           <button onClick={() => handlePlay()}>
