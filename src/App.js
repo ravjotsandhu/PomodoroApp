@@ -3,6 +3,8 @@ import { useState, useContext, useEffect } from "react";
 import "./index.css";
 import setTimerContext from "./context.js";
 
+const audio = document.getElementById("beep");
+
 function App() {
   const {
     time,
@@ -36,6 +38,7 @@ function App() {
   };
   const handleReset = () => {
     setTime(25 * 60);
+    audio.pause();
   };
   useEffect(() => {
     if (isPlaying) {
@@ -50,6 +53,7 @@ function App() {
           } else {
             setTime(state.find((item) => item.id === 2).count * 60);
           }
+          audio.play();
         }, 1000);
       }
     }
