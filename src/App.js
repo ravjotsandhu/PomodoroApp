@@ -44,10 +44,16 @@ function App() {
           setcurrentTimer((Timer) =>
             Timer === "Session" ? "Break" : "Session"
           );
+
+          if (currentTimer === "Session") {
+            setTime(state.find((item) => item.id === 1).count * 60);
+          } else {
+            setTime(state.find((item) => item.id === 2).count * 60);
+          }
         }, 1000);
       }
     }
-  }, [isPlaying, time, setcurrentTimer]);
+  }, [isPlaying, time, setcurrentTimer, setTime, state, currentTimer]);
   return (
     <div>
       <div className="flex actions-wrapper">
