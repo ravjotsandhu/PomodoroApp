@@ -37,7 +37,11 @@ function App() {
     setIsPlaying(false);
   };
   const handleReset = () => {
-    setTime(25 * 60);
+    if (currentTimer === "Break") {
+      setTime(state.find((item) => item.id === 1).count * 60);
+    } else {
+      setTime(state.find((item) => item.id === 2).count * 60);
+    }
     audio.pause();
   };
   useEffect(() => {
