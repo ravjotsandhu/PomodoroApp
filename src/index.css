@@ -5,8 +5,8 @@
 }
 
 body {
-  background-color: #282c34;
-  color: #fff;
+  background: #282c34;
+  color: rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,6 @@ body {
   text-align: center;
 }
 .flex {
-  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,20 +26,24 @@ body {
 
 .clock-container {
   text-align: center;
-  border: 2px solid #fff;
   border-radius: 10px;
   padding: 10px 60px;
   display: inline-block;
   margin-top: 40px;
+  box-shadow: 0 15px 15px rgba(0,0,0,.3),   
+          inset 0 15px 15px rgba(0,0,0,.3);
 }
 
 button {
-  background-color: transparent;
+  background: #282c34;
   padding: 10px 15px;
   cursor: pointer;
   margin: 10px;
-  color: #fff;
+  color: rgb(255, 255, 255);
   font-size: 20px;
+  border-radius: 20px;
+  box-shadow: 0 15px 15px rgba(0,0,0,.3),   
+          inset 0 15px 15px rgba(0,0,0,.3);
 }
 
 .actions-wrapper span {
@@ -54,4 +57,22 @@ button {
 
 .clock-container span{
   font-size: 60px;
+}
+
+@media only screen and (max-width:700px){
+  .flex{
+    width:100%
+  }
+  .clock-container{
+    width: 90%;
+  }
+  .actions-wrapper{
+    width: 100%;
+  }
+  .timer-container{
+    width: 100%;
+  }
+  button {
+    width: 80%;
+  }
 }
