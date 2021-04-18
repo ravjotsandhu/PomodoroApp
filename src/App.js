@@ -30,12 +30,20 @@ function App() {
         el.id === id && el.count < 60 ? { ...el, count: el.count + 1 } : el
       )
     );
-  const handlePlay = () => {
+  /*const handlePlay = () => {
     setIsPlaying(true);
   };
   const handlePause = () => {
     setIsPlaying(false);
-  };
+  };*/
+  const handlePlayPause=()=>{
+    if(isPlaying){
+      setIsPlaying(false);
+    }
+    else{
+      setIsPlaying(true);
+    }
+  }
   const handleReset = () => {
     if (currentTimer === "Break") {
       setTime(state.find((item) => item.id === 1).count * 60);
@@ -79,11 +87,8 @@ function App() {
         <h1>{currentTimer}</h1>
         <span>{convertToTime(time)}</span>
         <div className="flex">
-          <button onClick={() => handlePlay()}>
-            <FaPlay />
-          </button>
-          <button onClick={() => handlePause()}>
-            <FaPause />
+          <button onClick={() => handlePlayPause()}>
+            {isPlaying?<FaPause />:<FaPlay/>}
           </button>
           <button onClick={() => handleReset()}>
             <FaSyncAlt />
@@ -101,15 +106,15 @@ const convertToTime = (count) => {
 };
 const SetTimer = ({ title, count, id, handleDecrease, handleIncrease }) => (
   <div className="timer-container">
-    <h1>{title}</h1>
+    <h2>{title}</h2>
     <div className="flex "></div>
     <div>
-      <button onClick={() => handleDecrease(id)}>
-        <FaMinus />
-      </button>
-      <span>{count}</span>
       <button onClick={() => handleIncrease(id)}>
         <FaPlus />
+      </button>
+      <span>{count}</span>
+      <button onClick={() => handleDecrease(id)}>
+        <FaMinus />
       </button>
     </div>
   </div>
